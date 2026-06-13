@@ -3,92 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Uni-Mates Chess Academy Portal</title>
+  <title>Uni-Mates Chess Academy Pro Portal</title>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <header class="topbar">
-    <div>
-      <h1>Uni-Mates Chess Academy</h1>
-      <p>Student Portal • Coach Dashboard • Puzzle Trainer • Video Lessons</p>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">♟</div>
+      <h1>Uni-Mates</h1>
+      <p>Chess Academy Pro</p>
     </div>
-    <nav>
-      <button onclick="showPage('home')">Home</button>
-      <button onclick="showPage('student')">Student</button>
-      <button onclick="showPage('coach')">Coach</button>
-      <button onclick="showPage('videos')">Videos</button>
-      <button onclick="showPage('puzzles')">Puzzles</button>
-    </nav>
-  </header>
+    <button onclick="showPage('dashboard')">Dashboard</button>
+    <button onclick="showPage('students')">Students</button>
+    <button onclick="showPage('courses')">Courses</button>
+    <button onclick="showPage('videos')">Videos</button>
+    <button onclick="showPage('puzzles')">Puzzle Trainer</button>
+    <button onclick="showPage('pgn')">PGN Analysis</button>
+    <button onclick="showPage('tournaments')">Tournaments</button>
+    <button onclick="showPage('settings')">Settings</button>
+  </aside>
 
-  <main>
-    <section id="home" class="page active">
-      <div class="hero">
-        <h2>Welcome to the Uni-Mates Online Training Portal</h2>
-        <p>A modern chess academy platform built for Coach Fernando, students, schools, and competitive players.</p>
-        <button onclick="showPage('student')">Start Training</button>
+  <main class="main">
+    <header class="header">
+      <div>
+        <h2 id="pageTitle">Dashboard</h2>
+        <p>Coach Fernando training system for students, lessons, homework, puzzles and game analysis.</p>
       </div>
+      <div class="loginBox">
+        <input id="loginName" placeholder="Student / Coach name"/>
+        <button onclick="login()">Login</button>
+      </div>
+    </header>
 
-      <div class="cards">
-        <div class="card"><h3>Student Accounts</h3><p>Students can log in locally and track lessons, puzzles, and homework progress.</p></div>
-        <div class="card"><h3>Coach Dashboard</h3><p>Coach Fernando can add homework, video links, and puzzle tasks.</p></div>
-        <div class="card"><h3>Puzzle Trainer</h3><p>Students solve tactical positions and save their scores.</p></div>
-        <div class="card"><h3>Video Academy</h3><p>Add YouTube lesson links for openings, middlegames, endgames, and tactics.</p></div>
+    <section id="dashboard" class="page active">
+      <div class="stats">
+        <div class="stat"><h3 id="studentCount">0</h3><p>Students</p></div>
+        <div class="stat"><h3 id="courseCount">0</h3><p>Courses</p></div>
+        <div class="stat"><h3 id="videoCount">0</h3><p>Videos</p></div>
+        <div class="stat"><h3 id="puzzleScore">0</h3><p>Puzzle Score</p></div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Today’s Training Plan</h3>
+          <ol>
+            <li>Warm-up tactics: 10 puzzles</li>
+            <li>Opening review: 15 minutes</li>
+            <li>Model game: annotate 1 critical position</li>
+            <li>Endgame: king activity and conversion</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Coach Notes</h3>
+          <p>Use the dashboard to add learners, assign courses, add videos, paste PGNs, and run academy events.</p>
+        </div>
       </div>
     </section>
 
-    <section id="student" class="page">
-      <h2>Student Portal</h2>
-      <div class="panel">
-        <input id="studentName" placeholder="Student name e.g. Kganya"/>
-        <input id="studentRating" placeholder="Current rating e.g. 1200"/>
-        <button onclick="saveStudent()">Save Student Profile</button>
+    <section id="students" class="page">
+      <h2>Student Manager</h2>
+      <div class="form">
+        <input id="studentName" placeholder="Student name"/>
+        <input id="studentRating" placeholder="Rating"/>
+        <input id="studentGoal" placeholder="Goal e.g. 1750+"/>
+        <button onclick="addStudent()">Add Student</button>
       </div>
-      <div id="studentProfile" class="output"></div>
-      <h3>Assigned Homework</h3>
-      <ul id="homeworkList"></ul>
+      <div id="studentsList" class="table"></div>
     </section>
 
-    <section id="coach" class="page">
-      <h2>Coach Dashboard</h2>
-      <div class="panel">
-        <h3>Add Homework</h3>
-        <input id="hwTitle" placeholder="Homework title"/>
-        <textarea id="hwDescription" placeholder="Homework instructions"></textarea>
-        <button onclick="addHomework()">Add Homework</button>
+    <section id="courses" class="page">
+      <h2>Course Builder</h2>
+      <div class="form">
+        <input id="courseTitle" placeholder="Course title e.g. Piece Improvement"/>
+        <select id="courseLevel">
+          <option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Elite</option>
+        </select>
+        <textarea id="courseDescription" placeholder="Course description"></textarea>
+        <button onclick="addCourse()">Add Course</button>
       </div>
-
-      <div class="panel">
-        <h3>Add Video Lesson</h3>
-        <input id="videoTitle" placeholder="Video title"/>
-        <input id="videoUrl" placeholder="YouTube link"/>
-        <button onclick="addVideo()">Add Video</button>
-      </div>
+      <div id="coursesList" class="cards"></div>
     </section>
 
     <section id="videos" class="page">
       <h2>Video Lesson Library</h2>
-      <div id="videoList" class="video-grid"></div>
+      <div class="form">
+        <input id="videoTitle" placeholder="Lesson title"/>
+        <input id="videoUrl" placeholder="YouTube link"/>
+        <select id="videoCategory">
+          <option>Opening</option><option>Middlegame</option><option>Endgame</option><option>Tactics</option><option>Game Analysis</option>
+        </select>
+        <button onclick="addVideo()">Add Video Lesson</button>
+      </div>
+      <div id="videosList" class="cards"></div>
     </section>
 
     <section id="puzzles" class="page">
       <h2>Puzzle Trainer</h2>
-      <div class="puzzle-card">
+      <div class="puzzle">
         <h3 id="puzzleTitle"></h3>
-        <p id="puzzleFen"></p>
+        <p class="fen" id="puzzleFen"></p>
         <p id="puzzleQuestion"></p>
-        <input id="puzzleAnswer" placeholder="Your answer e.g. Rxe8+"/>
-        <button onclick="checkPuzzle()">Submit Answer</button>
-        <button onclick="nextPuzzle()">Next Puzzle</button>
+        <input id="puzzleAnswer" placeholder="Enter best move"/>
+        <button onclick="checkPuzzle()">Submit</button>
+        <button onclick="nextPuzzle()">Next</button>
         <p id="puzzleResult"></p>
       </div>
-      <h3>Score: <span id="score">0</span></h3>
+      <div class="form">
+        <h3>Add Custom Puzzle</h3>
+        <input id="newPuzzleTitle" placeholder="Puzzle title"/>
+        <textarea id="newPuzzleFen" placeholder="Position description or FEN"></textarea>
+        <input id="newPuzzleQuestion" placeholder="Question"/>
+        <input id="newPuzzleAnswer" placeholder="Correct answer"/>
+        <button onclick="addPuzzle()">Add Puzzle</button>
+      </div>
+    </section>
+
+    <section id="pgn" class="page">
+      <h2>PGN Analysis Coach</h2>
+      <p>Paste a game PGN below. This starter system gives training prompts and stores the game locally.</p>
+      <textarea id="pgnText" placeholder="Paste PGN here..."></textarea>
+      <button onclick="savePGN()">Save PGN</button>
+      <button onclick="generatePGNNotes()">Generate Coach Fernando Notes</button>
+      <div id="pgnOutput" class="output"></div>
+    </section>
+
+    <section id="tournaments" class="page">
+      <h2>Tournament Manager</h2>
+      <div class="form">
+        <input id="eventName" placeholder="Tournament name"/>
+        <input id="eventDate" type="date"/>
+        <input id="eventVenue" placeholder="Venue"/>
+        <button onclick="addEvent()">Add Event</button>
+      </div>
+      <div id="eventsList" class="cards"></div>
+    </section>
+
+    <section id="settings" class="page">
+      <h2>Settings & Next Backend Step</h2>
+      <div class="card">
+        <h3>Static Version</h3>
+        <p>This version works on GitHub Pages and saves data in the browser using localStorage.</p>
+        <h3>Professional Backend Upgrade</h3>
+        <p>For real student accounts across devices, connect this portal to Supabase or Firebase.</p>
+        <pre>
+Tables needed:
+students(id, name, rating, goal, created_at)
+courses(id, title, level, description)
+videos(id, title, url, category)
+homework(id, student_id, course_id, task, due_date, status)
+puzzles(id, title, fen, question, answer, theme)
+pgn_games(id, student_id, pgn, coach_notes)
+events(id, name, date, venue)
+        </pre>
+      </div>
     </section>
   </main>
-
-  <footer>
-    <p>Done by Coach Fernando • Uni-Mates Chess Academy</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
