@@ -1,42 +1,17 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; line-height: 1.6; color: #172033; background: #f6f8fb; }
-a { text-decoration: none; color: inherit; }
-.hero { min-height: 90vh; background: linear-gradient(135deg, #101828, #1d3557); color: white; padding: 24px; }
-.navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1150px; margin: auto; }
-.logo { font-size: 1.25rem; font-weight: 800; }
-.nav-links { display: flex; gap: 18px; font-size: 0.95rem; }
-.nav-links a { opacity: 0.9; }
-.hero-content { max-width: 900px; margin: 120px auto 0; text-align: center; }
-.badge { display: inline-block; background: #facc15; color: #111827; padding: 8px 16px; border-radius: 999px; font-weight: bold; margin-bottom: 20px; }
-h1 { font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 1.05; margin-bottom: 22px; }
-.hero-text, .section-intro { max-width: 760px; margin: 0 auto 28px; font-size: 1.1rem; opacity: 0.9; }
-.hero-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-.btn, button { display: inline-block; border: none; border-radius: 10px; padding: 12px 20px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-.primary { background: #facc15; color: #111827; }
-.secondary { background: white; color: #111827; }
-.btn:hover, button:hover { transform: translateY(-2px); }
-.section { padding: 80px 24px; max-width: 1150px; margin: auto; }
-.section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 18px; }
-.dark { max-width: none; background: #111827; color: white; }
-.dark > * { max-width: 1150px; margin-left: auto; margin-right: auto; }
-.light { max-width: none; background: #e9eef6; }
-.features, .course-grid, .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; margin-top: 35px; }
-.card, .course-card, .price-card, .contact-box { background: white; color: #172033; padding: 26px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-.course-card span { color: #facc15; font-weight: 800; }
-.course-card h3, .card h3, .price-card h3 { margin: 10px 0; }
-.course-card button { margin-top: 18px; background: #1d3557; color: white; }
-.course-card.completed { border: 3px solid #22c55e; }
-.course-card.completed button { background: #22c55e; }
-.puzzle-box { display: grid; grid-template-columns: minmax(260px, 420px) 1fr; gap: 32px; align-items: center; margin-top: 32px; }
-.board-placeholder { background: #111827; color: #facc15; border-radius: 18px; padding: 28px; font-size: 1.65rem; line-height: 1.55; text-align: center; letter-spacing: 8px; box-shadow: inset 0 0 0 6px #facc15; }
-.checklist { margin: 18px 0 24px 24px; }
-.homework-form { max-width: 720px; margin: 28px auto 0; display: grid; gap: 14px; }
-input, select, textarea { padding: 14px; border: 1px solid #cfd7e6; border-radius: 10px; font-size: 1rem; }
-textarea { min-height: 150px; }
-.success-msg { text-align: center; color: #166534; font-weight: 700; margin-top: 18px; }
-.price-card { text-align: center; }
-.price-card.featured { border: 4px solid #facc15; transform: scale(1.03); }
-.price { font-size: 2rem; font-weight: 900; color: #1d3557; margin: 10px 0; }
-.contact-box { max-width: 720px; margin-top: 28px; }
-footer { text-align: center; padding: 26px; background: #0b1220; color: white; }
-@media (max-width: 760px) { .navbar, .nav-links { flex-direction: column; gap: 12px; } .hero-content { margin-top: 70px; } .puzzle-box { grid-template-columns: 1fr; } .board-placeholder { font-size: 1.15rem; letter-spacing: 5px; } }
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#17202a}
+.topbar{background:#0b1f3a;color:white;padding:24px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.topbar h1{margin:0;font-size:28px}.topbar p{margin:5px 0 0;color:#d6e4ff}
+nav button,.hero button,.panel button,.puzzle-card button{background:#f4b400;color:#111;border:0;padding:10px 14px;border-radius:8px;margin:4px;cursor:pointer;font-weight:bold}
+nav button:hover,.hero button:hover,.panel button:hover,.puzzle-card button:hover{filter:brightness(.95)}
+main{padding:24px;max-width:1100px;margin:auto}.page{display:none}.page.active{display:block}
+.hero{background:white;border-radius:16px;padding:35px;box-shadow:0 4px 18px rgba(0,0,0,.08);text-align:center}
+.hero h2{font-size:32px;margin-top:0}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:24px}
+.card,.panel,.output,.puzzle-card{background:white;padding:20px;border-radius:14px;box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.panel{margin:16px 0;display:grid;gap:10px}input,textarea{padding:12px;border:1px solid #ccd4dd;border-radius:8px;font-size:15px;width:100%}
+textarea{min-height:90px}.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.video-item{background:white;border-radius:14px;padding:18px;box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.video-item a{color:#0b5ed7;font-weight:bold}.puzzle-card{max-width:650px}
+#puzzleFen{font-family:monospace;background:#eef2f7;padding:12px;border-radius:8px;overflow:auto}
+footer{text-align:center;padding:20px;color:#52616b}
+@media(max-width:700px){.topbar{display:block}.hero h2{font-size:24px}}

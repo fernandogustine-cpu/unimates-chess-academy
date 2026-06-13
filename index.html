@@ -2,131 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uni-Mates Chess Academy Training Portal</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uni-Mates Chess Academy Portal</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <header class="hero">
-    <nav class="navbar">
-      <div class="logo">♟ Uni-Mates Chess Academy</div>
-      <div class="nav-links">
-        <a href="#courses">Courses</a>
-        <a href="#puzzles">Puzzles</a>
-        <a href="#homework">Homework</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-
-    <div class="hero-content">
-      <p class="badge">Coach Fernando Training System</p>
-      <h1>Train smarter. Solve better. Play like a champion.</h1>
-      <p class="hero-text">
-        A chess training portal for students to learn lessons, solve puzzles, complete homework,
-        track progress, and receive Coach Fernando feedback.
-      </p>
-      <div class="hero-buttons">
-        <a class="btn primary" href="#courses">Start Training</a>
-        <a class="btn secondary" href="#pricing">View Packages</a>
-      </div>
+  <header class="topbar">
+    <div>
+      <h1>Uni-Mates Chess Academy</h1>
+      <p>Student Portal • Coach Dashboard • Puzzle Trainer • Video Lessons</p>
     </div>
+    <nav>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('student')">Student</button>
+      <button onclick="showPage('coach')">Coach</button>
+      <button onclick="showPage('videos')">Videos</button>
+      <button onclick="showPage('puzzles')">Puzzles</button>
+    </nav>
   </header>
 
   <main>
-    <section class="section" id="about">
-      <h2>Built for serious student improvement</h2>
-      <p class="section-intro">
-        This portal gives every student a clear path: watch the lesson, study the example,
-        solve puzzles, submit homework, and improve with coach feedback.
-      </p>
-      <div class="features">
-        <div class="card"><h3>📚 Structured Courses</h3><p>Beginner, tactics, openings, middlegame, endgames, and tournament preparation.</p></div>
-        <div class="card"><h3>🧩 Puzzle Training</h3><p>Daily puzzles by theme: forks, pins, skewers, deflection, mate patterns, and outposts.</p></div>
-        <div class="card"><h3>📈 Progress Tracking</h3><p>Track lesson completion, puzzle score, homework, and Coach Fernando notes.</p></div>
+    <section id="home" class="page active">
+      <div class="hero">
+        <h2>Welcome to the Uni-Mates Online Training Portal</h2>
+        <p>A modern chess academy platform built for Coach Fernando, students, schools, and competitive players.</p>
+        <button onclick="showPage('student')">Start Training</button>
+      </div>
+
+      <div class="cards">
+        <div class="card"><h3>Student Accounts</h3><p>Students can log in locally and track lessons, puzzles, and homework progress.</p></div>
+        <div class="card"><h3>Coach Dashboard</h3><p>Coach Fernando can add homework, video links, and puzzle tasks.</p></div>
+        <div class="card"><h3>Puzzle Trainer</h3><p>Students solve tactical positions and save their scores.</p></div>
+        <div class="card"><h3>Video Academy</h3><p>Add YouTube lesson links for openings, middlegames, endgames, and tactics.</p></div>
       </div>
     </section>
 
-    <section class="section dark" id="courses">
-      <h2>First 5 Courses</h2>
-      <div class="course-grid">
-        <div class="course-card"><span>Course 1</span><h3>Beginner Chess Thinking</h3><p>Checks, captures, threats, blunder check, and basic planning.</p><button onclick="markComplete(this)">Mark Complete</button></div>
-        <div class="course-card"><span>Course 2</span><h3>Forcing Moves</h3><p>Learn checks, captures, threats, and moves your opponent must answer.</p><button onclick="markComplete(this)">Mark Complete</button></div>
-        <div class="course-card"><span>Course 3</span><h3>Pins, Forks & Skewers</h3><p>Master the tactical weapons that win material and games.</p><button onclick="markComplete(this)">Mark Complete</button></div>
-        <div class="course-card"><span>Course 4</span><h3>Outposts & Piece Improvement</h3><p>Build strong squares, improve pieces, and create positional pressure.</p><button onclick="markComplete(this)">Mark Complete</button></div>
-        <div class="course-card"><span>Course 5</span><h3>Endgame Basics</h3><p>King activity, opposition, rook endgames, and converting advantages.</p><button onclick="markComplete(this)">Mark Complete</button></div>
+    <section id="student" class="page">
+      <h2>Student Portal</h2>
+      <div class="panel">
+        <input id="studentName" placeholder="Student name e.g. Kganya"/>
+        <input id="studentRating" placeholder="Current rating e.g. 1200"/>
+        <button onclick="saveStudent()">Save Student Profile</button>
+      </div>
+      <div id="studentProfile" class="output"></div>
+      <h3>Assigned Homework</h3>
+      <ul id="homeworkList"></ul>
+    </section>
+
+    <section id="coach" class="page">
+      <h2>Coach Dashboard</h2>
+      <div class="panel">
+        <h3>Add Homework</h3>
+        <input id="hwTitle" placeholder="Homework title"/>
+        <textarea id="hwDescription" placeholder="Homework instructions"></textarea>
+        <button onclick="addHomework()">Add Homework</button>
+      </div>
+
+      <div class="panel">
+        <h3>Add Video Lesson</h3>
+        <input id="videoTitle" placeholder="Video title"/>
+        <input id="videoUrl" placeholder="YouTube link"/>
+        <button onclick="addVideo()">Add Video</button>
       </div>
     </section>
 
-    <section class="section" id="puzzles">
-      <h2>Puzzle Training Room</h2>
-      <p class="section-intro">Use this section for puzzle links, Lichess Studies, ChessBase positions, or future interactive boards.</p>
-      <div class="puzzle-box">
-        <div class="board-placeholder">
-          <div>♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜</div>
-          <div>♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟</div>
-          <div>· · · · · · · ·</div>
-          <div>· · · · · · · ·</div>
-          <div>· · · · · · · ·</div>
-          <div>· · · · · · · ·</div>
-          <div>♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙</div>
-          <div>♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖</div>
-        </div>
-        <div>
-          <h3>Daily Puzzle Themes</h3>
-          <ul class="checklist">
-            <li>Mate in 1 and Mate in 2</li>
-            <li>Forks, pins, skewers</li>
-            <li>Deflection and decoy</li>
-            <li>Outposts and piece improvement</li>
-            <li>Opening traps</li>
-          </ul>
-          <a class="btn primary" href="https://lichess.org/study" target="_blank">Create Lichess Study</a>
-        </div>
-      </div>
+    <section id="videos" class="page">
+      <h2>Video Lesson Library</h2>
+      <div id="videoList" class="video-grid"></div>
     </section>
 
-    <section class="section light" id="homework">
-      <h2>Homework Submission</h2>
-      <p class="section-intro">Students can submit lesson homework here. Later this can connect to Google Sheets or a database.</p>
-      <form class="homework-form" onsubmit="submitHomework(event)">
-        <input type="text" id="studentName" placeholder="Student name" required />
-        <select id="courseName" required>
-          <option value="">Choose course</option>
-          <option>Beginner Chess Thinking</option>
-          <option>Forcing Moves</option>
-          <option>Pins, Forks & Skewers</option>
-          <option>Outposts & Piece Improvement</option>
-          <option>Endgame Basics</option>
-        </select>
-        <textarea id="homeworkText" placeholder="Write your answers or homework notes here" required></textarea>
-        <button class="btn primary" type="submit">Submit Homework</button>
-      </form>
-      <p id="formMessage" class="success-msg"></p>
-    </section>
-
-    <section class="section" id="pricing">
-      <h2>Training Packages</h2>
-      <div class="pricing-grid">
-        <div class="price-card"><h3>Basic</h3><p class="price">R100/month</p><p>Lessons + puzzle access</p><a class="btn secondary" href="#contact">Join Basic</a></div>
-        <div class="price-card featured"><h3>Standard</h3><p class="price">R250/month</p><p>Lessons + puzzles + homework</p><a class="btn primary" href="#contact">Join Standard</a></div>
-        <div class="price-card"><h3>Premium</h3><p class="price">R500/month</p><p>Lessons + puzzles + Coach Fernando feedback</p><a class="btn secondary" href="#contact">Join Premium</a></div>
+    <section id="puzzles" class="page">
+      <h2>Puzzle Trainer</h2>
+      <div class="puzzle-card">
+        <h3 id="puzzleTitle"></h3>
+        <p id="puzzleFen"></p>
+        <p id="puzzleQuestion"></p>
+        <input id="puzzleAnswer" placeholder="Your answer e.g. Rxe8+"/>
+        <button onclick="checkPuzzle()">Submit Answer</button>
+        <button onclick="nextPuzzle()">Next Puzzle</button>
+        <p id="puzzleResult"></p>
       </div>
-    </section>
-
-    <section class="section dark" id="contact">
-      <h2>Contact Coach Fernando</h2>
-      <p class="section-intro">Ready to train? Send a message and request access to the portal.</p>
-      <div class="contact-box">
-        <p><strong>Email:</strong> fernandogustine@gmail.com</p>
-        <p><strong>Brand:</strong> Uni-Mates Chess Academy</p>
-        <p><strong>Focus:</strong> Student chess development, tournament preparation, and structured improvement.</p>
-      </div>
+      <h3>Score: <span id="score">0</span></h3>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Uni-Mates Chess Academy. Done by Coach Fernando.</p>
+    <p>Done by Coach Fernando • Uni-Mates Chess Academy</p>
   </footer>
 
   <script src="script.js"></script>
